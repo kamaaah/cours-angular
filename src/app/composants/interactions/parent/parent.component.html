@@ -1,0 +1,8 @@
+<p>parent works!</p>
+<h3>Moyenne des enfants {{ moyenne }}</h3>
+<app-child
+  *ngFor="let enfant of enfants"
+  [nom]="enfant"
+  (message)="computeAvg($event)"
+>
+</app-child>

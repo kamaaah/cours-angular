@@ -1,0 +1,33 @@
+<div class="jumbotron">
+  <h1>Page d'Authentication</h1>
+  <form (ngSubmit)="isAuthenticated()">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"> Nom d'utilisateur </span>
+      </div>
+      <input
+        class="form-control col-sm-3"
+        type="text"
+        [(ngModel)]="login"
+        name="login"
+      />
+    </div>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"> Mot de passe </span>
+      </div>
+      <input
+        type="password"
+        class="form-control col-sm-3"
+        [(ngModel)]="password"
+        name="password"
+      />
+    </div>
+    <div>
+      <button class="btn btn-outline-success mx-auto d-block" type="submit">
+        Se Connecter
+      </button>
+    </div>
+    <div [hidden]="erreur">Identifiants incorrects</div>
+  </form>
+</div>

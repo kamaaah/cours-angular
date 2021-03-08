@@ -1,0 +1,79 @@
+
+
+A l'initialisation du component, créeer un nouvel objet de type developer:
+dans le ngOnInit(){
+  = new developer()
+  developer!:[];
+}
+
+ developers = [
+    {
+      lastName: 'Potter',
+      firstName: 'Harry',
+      age: 18,
+      sexe: 'homme',
+      bio: 'Ecole de magie spécialité informatique à Poudlar',
+      skills: [],
+    },
+    {
+      lastName: 'Allen',
+      firstName: 'Barry',
+      age: 18,
+      sexe: 'homme',
+      bio: 'Ecole de criminologie spécialité informatique à Central City',
+      skills: [],
+    },
+    {
+      lastName: 'West-Allen',
+      firstName: 'Iris',
+      age: 23,
+      sexe: 'Femme',
+      bio: 'Ecole de Journalisme spécialité informatique à Central City',
+      skills: [],
+    },
+    {
+      lastName: 'Frost',
+      firstName: 'Killer',
+      age: 25,
+      sexe: 'Femme',
+      bio: 'Scientifique spécialité informatique à Central City',
+      skills: [],
+    },
+    {
+      lastName: 'Parker',
+      firstName: 'Parker',
+      age: 28,
+      sexe: 'Homme',
+      bio: 'Scientifique spécialité physique appliquée à Manhattan',
+      skills: [],
+    },
+  ];
+
+  skills = [
+    {
+      name: 'Magie informatique',
+      logo: './utilities/spiderm.jpeg',
+      link:
+        'https://imparfaites.be/spiderman-2-the-amazing-spider-man-le-destin-dun-heros/',
+    },
+    {
+      name: 'Super vitesse informatique',
+      logo: '',
+      link: '',
+    },
+    {
+      name: 'Dectective informatique',
+      logo: '',
+      link: '',
+    },
+    {
+      name: 'Scientifique informatique',
+      logo: '',
+      link: '',
+    },
+    {
+      name: 'Gravité informatique',
+      logo: '',
+      link: '',
+    },
+  ];

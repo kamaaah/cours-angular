@@ -1,0 +1,105 @@
+<div class="container">
+  <p>templateform works!</p>
+  <!--
+  Plusieurs formes de binding
+  {{ interpolation}} : permet de récupérer la valeur d'un
+  attribut déclarée dans le .component.ts
+
+  [ one way binding] : permet aussi de récupérer la valeur d'un
+  d'un attribut déclarée dans le .component.ts
+
+  {{ interpolation }}est un raccourci de [ one way binding]
+
+  ( event binding ) permet au .component.ts de
+  récupérer des valeurs passées par le .component.html
+
+  Il est possible de combiner one way et event binding
+
+Resultat : two way binding -> Un changement de valeur dans .component.ts sera apercu
+ dans .component.html et un changement dans.component.html sera recu dans .component.ts
+Pour la liaison bidirectionnelle, il nous faut la propriete ngModel
+Pour pouvoir utiliser la propriete ngModel, il faut ajouter le
+module FormsModule dans app.module.ts -->
+
+  <!-- <div class="container">
+    <div>
+        <input type="text" #nom/>
+    </div>
+    <div>
+        <button onClick="direBonjour(nom.value)">
+          Cliquer
+        </button>
+    </div>
+    <div>
+        <h3>Bonjour {{result}}</h3>
+    </div>
+</div>-->
+
+  <!--     <input type="text" [(ngModel)]="nom" />
+</div>
+<div>
+    {{ nom }}
+</div> -->
+  <form #nomForm="ngForm" (ngSubmit)="ajouterPersonne()">
+    <div>
+      <div>
+        <label>Nom</label>
+      </div>
+      <input
+        type="text"
+        name="nom"
+        [(ngModel)]="personne.nom"
+        required
+        #nom="ngModel"
+      />
+      <!-- Classe Pristine = classe qui sert quand le change est vide contraire de classe durty -->
+      <div [hidden]="nom.valid || nom.pristine">
+        <span>Le nom obligatoire</span>
+      </div>
+    </div>
+    <div>
+      <div>
+        <label>Prénom</label>
+      </div>
+      <input
+        type=" text "
+        name="prenom"
+        [(ngModel)]="personne.prenom"
+        required
+        #prenom="ngModel"
+      />
+      <div [hidden]="prenom.valid || prenom.pristine">
+        <span>Le nom obligatoire</span>
+      </div>
+    </div>
+    <div>
+      <button [disabled]="!nomForm.valid">Ajouter</button>
+    </div>
+    <div class="container">
+      <table class="table-secondary">
+        <tr class="table-secondary">
+          <td class="table-secondary">
+            {{ personne.nom }}
+          </td>
+          <td class="table-secondary">
+            {{ personne.prenom }}
+          </td>
+        </tr>
+      </table>
+      <div class="container" style="margin-top: 15px">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let personne of personnes">
+            <span> {{ personne.nom }} {{ personne.prenom }} </span>
+            <button
+              type="submit"
+              class="btn btn-danger"
+              (click)="supprimerPersonne(personne)"
+            >
+              supp
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </form>
+</div>

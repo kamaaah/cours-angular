@@ -1,0 +1,18 @@
+<p>update-personne works!</p>
+<div class="container">
+  <form (ngSubmit)="updatePerson()">
+    <div>
+      Id: <input type="text" name="id" [(ngModel)]="personne.id" required />
+    </div>
+    <div>
+      Nom: <input type="text" name="nom" [(ngModel)]="personne.nom" required />
+    </div>
+    <div>
+      Prénom:
+      <input type="text" name="prenom" [(ngModel)]="personne.prenom" required />
+    </div>
+    <button class="btn btn-success">Ajouter</button>
+    <button class="btn btn-success">Ajouter</button>
+  </form>
+</div>
++

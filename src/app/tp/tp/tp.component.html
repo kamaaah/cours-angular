@@ -1,0 +1,128 @@
+<div class="container">
+    <div class="jumbotron">
+        <h1>Exo</h1>
+        <p class="lead"></p>
+        <p class="lead"></p>
+        <p class="lead"></p>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <form [formGroup]="peopleForm" #myForm="ngForm" (ngSubmit)="showall()">
+                <!-- Section Id  -->
+                <div class="form-group">
+                    <label for="id">Id:</label>
+                    <input class="form-control" type="text" name="id" formControlName="id" placeholder="Enter id" />
+                </div>
+                <div *ngIf="
+            peopleForm.controls['id'].invalid &&
+            (peopleForm.controls['id'].dirty ||
+              peopleForm.controls['id'].touched)
+          " class="alert alert-danger">
+                    <div *ngIf="peopleForm.controls['id'].errors?.required">
+                        Le nom est obligatoire
+                    </div>
+                </div>
+                <!-- End Section Id  -->
+                <!-- Section Nom  -->
+                <div class="form-group">
+                    <label for="lastName">Nom</label>
+                    <input class="form-control" type="text" name="lastName" formControlName="lastName" />
+                </div>
+                <div *ngIf="
+            peopleForm.controls['lastName'].invalid &&
+            (peopleForm.controls['lastName'].dirty ||
+              peopleForm.controls['lastName'].touched)
+          " class="alert alert-danger">
+                    <div *ngIf="peopleForm.controls['lastName'].errors?.required">
+                        Le nom est obligatoire
+                    </div>
+                    <div *ngIf="peopleForm.controls['lastName'].errors?.error">
+                        Première lettre en majuscule
+                    </div>
+                </div>
+                <!-- End Section Nom  -->
+                <!-- Section Prénom  -->
+                <div class="form-group">
+                    <label for="firstName">Prénom</label>
+                    <input class="form-control" type="text" name="firstName" formControlName="firstName" />
+                </div>
+                <div *ngIf="
+            peopleForm.controls['firstName'].invalid &&
+            (peopleForm.controls['firstName'].dirty ||
+              peopleForm.controls['firstName'].touched)
+          " class="alert alert-danger">
+                    <div *ngIf="peopleForm.controls['firstName'].errors?.required">
+                        Le nom est obligatoire
+                    </div>
+                    <div *ngIf="peopleForm.controls['firstName'].errors?.error">
+                        Première lettre en majuscule
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-success" [disabled]="!peopleForm.valid">
+          Push
+        </button>
+                <hr />
+                <!--  Section Comments Array  -->
+                <div formArrayName="comments">
+                    <h3 style="display: contents">Commentaires</h3>
+                    <div>
+                        <button class="btn btn-outline-warning" type="button" (click)="addCommentsGroup()">
+              Add Comments
+            </button>
+                    </div>
+
+                    <!-- *ngFor="let comment of peopleForm.get('comments')['controls'] -->
+                    <div *ngFor="let comment of comments.controls; let i = index">
+                        <div [formGroupName]="i">
+                            <div class="form-group input-group mb-3">
+                                <!-- <label for="title">Titre</label> -->
+                                <span for="title" class="input-group-text" id="basic-addon2">Titre</span>
+                                <input class="form-control" name="title" placeholder="the title" formControlName="title" />
+                            </div>
+                            <div class="form-group input-group mb-3">
+                                <span for="comment" class="input-group-text" id="basic-addon2">Commentaire</span>
+                                <textarea class="form-control" name="comment" placeholder="write your commment" formControlName="comment">
+                </textarea>
+                            </div>
+                            <div class="form-group input-group mb-3">
+                                <!-- <label for="category">Catégorie</label> -->
+                                <span for="category" class="input-group-text" id="basic-addon2">Catégorie</span>
+                                <input class="form-control" name="category" placeholder="write the category" formControlName="category" />
+                            </div>
+                            <button class="btn btn-outline-danger justify-content-end" type="button" (click)="deleteComments(i)">
+                Delete comments
+              </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-sm">
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prénom</th>
+                            <th scope="col">Commentaires</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let elt of peoples">
+                            <td>{{ elt.id }}</td>
+                            <td>{{ elt.lastName }}</td>
+                            <td>{{ elt.firstName }}</td>
+                            <td *ngFor="let subComment of elt.comments">
+                                <p><span style="font-weight: bold;padding-right: 5px;">{{ subComment.title }}</span></p>
+                                <p> <span style="font-weight: bold;padding-right: 5px;">{{ subComment.comment }} </span></p>
+                                <p><span style="font-weight: bold;padding-right: 5px;">{{ subComment.category }}</span></p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

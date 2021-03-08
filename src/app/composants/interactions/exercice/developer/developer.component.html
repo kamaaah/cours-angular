@@ -1,0 +1,34 @@
+<!-- <mat-card-content>
+  <mat-card-title-group>
+    <mat-card-title> </mat-card-title>
+
+    <mat-card-subtitle>
+      C'est un {{ developer.sexe }} qui est agé de {{ developer.age }} ans
+    </mat-card-subtitle>
+    <p>Voici sa biographie : {{ developer.bio }}</p>
+    <p>Voici ses compétences:</p>
+  </mat-card-title-group>
+</mat-card-content> -->
+
+<div class="mdc-card mdc-card--outlined">
+  <div class="my-card__media mdc-card__media mdc-card__media--16-9">
+    <div class="mdc-card__media-content">
+      Présenation du développer {{ developer.lastName }}
+      {{ developer.firstName }}
+    </div>
+    <div class="mdc-card__media-content">
+      C'est un {{ developer.sexe }} qui est agé de {{ developer.age }} ans
+    </div>
+    <div class="mdc-card__media-content">
+     Voici sa biographie : {{ developer.bio }}
+    </div>
+    <div class="mdc-card__media-content">
+     <p>Voici ses compétences:</p>
+    </div>
+  </div>
+  <div class="mdc-card__primary-action" tabindex="0">
+    <li class="mdc-list-item" *ngFor="let oneOfskill of developer.skills">
+      <app-skill [skill]="oneOfskill"> </app-skill>
+    </li>
+  </div>
+</div>

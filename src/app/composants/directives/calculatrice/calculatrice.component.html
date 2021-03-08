@@ -1,0 +1,49 @@
+<p>calculatrice works!</p>
+<div class="container">
+    <form #numberForm="ngForm">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Calculatrice</h5>
+                <input class="btn btn-outline-secondary btn-sm" type="number" name="number1" [(ngModel)]="number1" />
+                <input class="bnt btn-outline-secondary" type="number" name="number2" [(ngModel)]="number2" />
+            </div>
+            <div class="modal-body">
+                <p>{{result}}</p>
+            </div>
+            <ul class="modal-footer">
+                <button type="button" value="somme" (click)="somme()" class="btn btn-primary " data-bs-dismiss="modal ">+</button>
+                <button type="button" value="soustraction" (click)="soustraction()" class="btn btn-secondary " data-bs-dismiss="modal ">-</button>
+            </ul>
+            <ul class="modal-footer">
+                <button type="button" value="multiple" (click)="multiple()" class="btn btn-success " data-bs-dismiss="modal ">x</button>
+                <button type="button" value="div" (click)="div()" class="btn btn-danger " data-bs-dismiss="modal ">/</button>
+            </ul>
+
+        </div>
+    </form>
+</div>
+
+
+<div class="shade">
+    <div class="blackboard">
+        <div class="form">
+            <p>
+                <label>Num 1: </label>
+                <input [(ngModel)]='num1' type="number" name="num1">
+            </p>
+            <p>
+                <label>Num 2: </label>
+                <input [(ngModel)]='num2' type="number" name="num2">
+            </p>
+            <p class="wipeout" style="font-size:10px">
+                <input type="button" value="Sum" (click)='sum()' />
+                <input type="button" value="Diff" (click)='diff()' />
+                <input type="button" value="Mult" (click)='mult()' />
+                <input type="button" value="Div" (click)='div1()' />
+            </p>
+            <p>
+                <label>Resultat: {{result1}}</label>
+            </p>
+        </div>
+    </div>
+</div>

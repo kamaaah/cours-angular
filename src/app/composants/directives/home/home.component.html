@@ -1,0 +1,238 @@
+<p>home works!</p>
+<div class="container">
+  <h2>{{ title }} app is running!</h2>
+  <ul class="list-group- list-group-flush">
+    <li class="list-group-item">{{ libelleFormation }}</li>
+
+    <hr />
+
+    <li class="list-group-item" [textContent]="libelleFormation">
+      {{ libelleFormation }}
+    </li>
+    <hr />
+
+    <li class="list-group-item">Nom:{{ personne.nom }}</li>
+    <li class="list-group-item">Prenom:{{ personne.prenom }}</li>
+
+    <hr />
+
+    <li class="list-group-item">{{ personne }}</li>
+    <li class="list-group-item">{{ personne | json }}</li>
+
+    <hr />
+
+    <li class="list-group-item">{{ tab[0] }}</li>
+    <li class="list-group-item">{{ tab[1] }}</li>
+    <li class="list-group-item">{{ tab[2] }}</li>
+    <li class="list-group-item">{{ tab[3] }}</li>
+    <hr />
+    <!-- Utilisation de la directive  *ngFor qui nous permet de repeter un traitement
+      ici sur un array[] tab déclaré et initialisé dans le code-behind
+    -->
+
+    <!-- Ces directives s'utilise avec les composants web :
+      -ng-container
+      -ng-template
+
+    -->
+    <ul class="list-group-item">
+      <li *ngFor="let elt of tab; let i = index">{{ i }} : {{ elt }}</li>
+    </ul>
+    <ul class="list-group-item">
+      <li
+        *ngFor="
+          let elt of tab;
+          let i = index;
+          let isFirst = first;
+          let isLast = last
+        "
+      >
+        {{ i }} : {{ elt }} : {{ isFirst }} : {{ isLast }}
+      </li>
+    </ul>
+    <ul class="list-group-item">
+      <li
+        *ngFor="
+          let elt of tab;
+          let i = index;
+          let isEven = even;
+          let isOdd = odd
+        "
+      >
+        {{ i }} : {{ elt }} : {{ isEven }} : {{ isOdd }} }}
+      </li>
+    </ul>
+    <ul class="list-group-item">
+      <li *ngIf="tab[0] % 2 != 0">{{ tab[0] }} est impair</li>
+    </ul>
+    <!--  Ecrire un code HTML,en utilisant les directives Angular, qui permet
+    d'afficher le 1er élément du tableau (tab) ainsi que sa parité (pair ou impair)  -->
+    <ul class="list-group-item">
+      <li *ngIf="tab[0] % 2 != 0; else sinon">{{ tab[0] }} est impair</li>
+      <ng-template #sinon>
+        <li>{{ tab[0] }} est pair</li>
+      </ng-template>
+    </ul>
+
+    <hr />
+    <!-- avec un then si -->
+
+    <!--  Ecire un code HTML, en utilisant les directives Angular, qui permet d'afficher sosu forme
+       -->
+    <ul class="list-group-item">
+      <li *ngIf="tab[3] % 2 != 0; then si; else sinon">
+        Ce code ne sera jamais affiché
+      </li>
+      <ng-template #si>
+        <li>{{ tab[3] }} est impair</li>
+      </ng-template>
+      <ng-template #sinon>
+        <li>{{ tab[3] }} est pair</li>
+      </ng-template>
+    </ul>
+    <hr />
+
+    <hr />
+    <ul class="list-group-item">
+      <ng-container *ngFor="let elt of tab">
+        <li *ngIf="tab[3] % 2 != 0; then si; else sinon">
+          Ce code ne sera jamais affiché
+        </li>
+        <ng-template #si>
+          <li>{{ tab[3] }} est impair</li>
+        </ng-template>
+        <ng-template #sinon>
+          <li>{{ tab[3] }} est pair</li>
+        </ng-template>
+      </ng-container>
+    </ul>
+    <hr />
+    <!-- Ecrire un code HTML, en utilisant les directives Angular, qui permet
+    d'afficher sous forme d'une liste chaque élément du tableau précédent
+    avec un message défini ainsi :
+    Si la valeur est comprise entre 0 et 9: echec
+    Si elle est entre 10 et 13 : moyen
+    si elle est entre 14 et 16 : bien
+    sinon : très bien
+  -->
+    <ul class="list-group-item">
+      <li>
+        <ng-container *ngFor="let elt of tab">
+          <ng-container [ngSwitch]="true">
+            <li *ngSwitchCase="elt >= 0 && elt <= 9">{{ elt }} : échec</li>
+            <li *ngSwitchCase="elt >= 10 && elt <= 13">{{ elt }} : moyen</li>
+            <li *ngSwitchCase="elt >= 14 && elt <= 16">{{ elt }} : bien</li>
+            <li *ngSwitchCase="elt > 16">{{ elt }} : très bien</li>
+            <li *ngSwitchDefault>autre</li>
+          </ng-container>
+        </ng-container>
+      </li>
+    </ul>
+
+    <!--  reporter le commentaire pris en photo -->
+
+    <li class="list-group-item">
+      <p [textContent]="nom" [ngStyle]="{ background: couleur }"></p>
+    </li>
+    <li class="list-group-item">
+      <p [ngStyle]="{ color: getColor(), background: getBackgroundColor() }">
+        {{ libelleFormation }}
+      </p>
+    </li>
+
+    <!--  reporter le commentaire pris en photo -->
+    <div></div>
+    <ul>
+      <li class="list-group-item">
+        <p [ngClass]="{ rouge: true }">{{ nom }}</p>
+      </li>
+      <li class="list-group-item">
+        <p [ngClass]="{ rouge: nom == 'Doe' }">{{ nom }}</p>
+      </li>
+      <li class="list-group-item">
+        <p [ngClass]="{ rouge: nom == 'Doe', bleu: nom != 'Doe' }">{{ nom }}</p>
+      </li>
+      <li class="list-group-item">
+        <p [ngClass]="nom == 'Doe' ? 'rouge' : 'blue'">nom</p>
+      </li>
+    </ul>
+  </ul>
+
+  <!--  Utiliser ngClass dans un code HTML permettant d'afficher en bleu les elements pairs du tableau
+  précédent (atb) et rn rouge les éléments impairs -->
+  <ul class="list-group-item">
+    <ng-container *ngFor="let elt of tab">
+      <li [ngClass]="elt % 2 == 0 ? 'bleu' : 'rouge'">
+        {{ elt }}
+      </li>
+    </ng-container>
+  </ul>
+  <!-- Ecrire un script Angular qui permet d’afficher dans une liste HTML les
+elements de la liste personne (on affiche que les nom et prenom). Les
+elements d’indice pair seront affiches en rouge, les impairs en bleu. -->
+  <ul>
+    <ng-container *ngFor="let person of personnes; let i = index">
+      <li [ngClass]="i % 2 != 0 ? 'rouge' : ' bleu'">
+        {{ person.nom + " " + person.prenom }}
+      </li>
+    </ng-container>
+  </ul>
+  <hr />
+  <ul>
+    <li>{{ "salut" | getChar }}</li>
+    <li>{{ "Wick" | getChar }}</li>
+    <li>{{ "John" | getChar }}</li>
+    <hr />
+    <li>{{ "salut" | getChar: 4 }}</li>
+    <li>{{ "wick" | getChar: 1 }}</li>
+    <li>{{ "John" | getChar }}</li>
+  </ul>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <h3>Array example Pipe</h3>
+      {{ tab | slice: 3:6 }} <br />
+      {{ tab | slice: 2:-4 }} <br />
+      {{ tab | slice: 5 }} <br />
+      {{ tab | slice: 5 }}
+      <br />
+    </li>
+  </ul>
+  <ul class="list-group-item-dark">
+    <li *ngFor="let num of tab | slice: 2:5">
+      {{ num }}
+    </li>
+  </ul>
+  <ul id="person">
+    <li *ngFor="let elt of person | getPersonArrayObject">
+      {{ elt.key }} : {{ elt.value }}
+    </li>
+  </ul>
+  <li class="list-group-item">
+    <button
+      type="button"
+      class="btn btn-primary"
+      tooltip="Je suis un bouton qui utilise Tooltip de ngxBootstrap"
+    >
+      Bouton avec Tooltip
+    </button>
+  </li>
+  <li class="list-group-item">
+    <button type="button" class="btn btn-info" (click)="openModal(modal)">
+      Open Modal
+    </button>
+    <ng-template #modal>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Modal</h4>
+        <button
+          class="close pull-right"
+          aria-label="Close"
+          (click)="modalRef.hide()"
+        ></button>
+        <span aria-hidden="true">&times;</span>
+      </div>
+      <div class="modal-body">
+        <p>I am a Modal</p>
+      </div>
+    </ng-template>
+  </li>
+</div>

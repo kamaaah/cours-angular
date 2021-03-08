@@ -1,0 +1,47 @@
+<!-- Le 18/02/2021  -->
+<!-- ***  Déclaration dans Personne.routing.module.ts ***
+{ path: 'details/:id', component: PersonneDetailsComponent },
+ -->
+
+<!-- ************  Template Personne Détails **************
+<h2>Personne Details</h2>
+<hr/>
+<div *ngIf="personne">
+  <div>
+    <label><b>id: </b></label> {{personne.id}}
+  </div>
+  <div>
+    <label><b>nom: </b></label> {{personne.nom}}
+  </div>
+  <div>
+    <label><b>prenom: </b></label> {{personne.prenom}}
+  </div>
+</div>
+
+ ************* End ********************************** -->
+
+<!--  ********** Template Personne list -->
+
+<!--
+<form #personneForm=ngForm (ngSubmit)="savePerson()">
+    <div>
+        Nom : <input type="text" name="nom" placeholder="Enter Name" [(ngModel)]="personne.nom" #nom="ngModel">
+    </div>
+    <div>
+        Prénom : <input type="text" name="prenom" placeholder="Enter Name" [(ngModel)]="personne.prenom" #prenom="ngModel">
+    </div>
+    <div>
+       <button class="btn btn-success" [disabled]=!personneForm.valid>
+           Ajouter
+       </button>
+    </div>
+</form>
+<div>
+    <ul>
+        <li *ngFor="let elt of personnes">
+        {{ elt.nom }} {{ elt.prenom }}
+        </li>
+    </ul>
+</div>
+
+  -->
